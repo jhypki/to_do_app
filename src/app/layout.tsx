@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Header from "@/components/Layout/Header";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="py-8 flex m-auto w-full max-w-xl flex-col items-center min-h-screen dark:bg-dark-veryDarkBlue bg-light-lightGrayishBlue  bg-top bg-no-repeat ">
+        <AuthProvider>
+          <div className="bg-mobile-light dark:bg-mobile-dark md:bg-desktop-light md:dark:bg-desktop-dark w-full fixed top-0 left-0 bg-cover h-96 -z-10"></div>
+          <Header />
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }
