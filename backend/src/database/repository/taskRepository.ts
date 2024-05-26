@@ -1,5 +1,4 @@
 import Task from "../models/Task";
-import User from "../models/User";
 
 export default class TaskRepository {
     async CreateTask(title: string, description: string, userId: string) {

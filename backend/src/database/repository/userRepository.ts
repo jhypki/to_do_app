@@ -2,6 +2,7 @@ import User from "../models/User";
 
 export default class UserRepository {
     async CreateUser(username: string, email: string, password: string) {
+        
         try {
             const user = new User({ username, email, password });
             const result = await user.save();
@@ -24,6 +25,15 @@ export default class UserRepository {
     async GetUserById(id: string) {
         try {
             const user = await User.findById(id);
+            return user;
+        } catch (error) {
+            throw new Error(error as string);
+        }
+    }
+
+    async GetUserByUsername(username: string) {
+        try {
+            const user = await User.findOne({ username });
             return user;
         } catch (error) {
             throw new Error(error as string);

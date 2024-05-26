@@ -11,6 +11,7 @@ export default class userService{
 
     async CreateUser(username: string, email: string, password: string){
         try{
+            
             const salt = await generateSalt();
             const hashedPassword = await hashPassword(password, salt);
             const result = await this.userRepository.CreateUser(username, email, hashedPassword);
@@ -25,6 +26,15 @@ export default class userService{
     async GetUserByEmail(email: string){
         try{
             const user = await this.userRepository.GetUserByEmail(email);
+            return user;
+        }
+        catch(error){
+            throw new Error(error as string);
+        }
+    }
+    async GetUserByUsername(username: string){
+        try{
+            const user = await this.userRepository.GetUserByUsername(username);
             return user;
         }
         catch(error){
