@@ -1,22 +1,27 @@
-import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import { connect } from "./database/connection";
-
 dotenv.config();
+import express, { Express, Request, Response } from "express";
+import { connect } from "./database/connection";
+import user from "./api/user";
+import tasks from "./api/tasks";
+import cors from "cors";
+
 
 const StartServer = async () => {
-  const app: Express = express();
-const port = process.env.PORT || 5000;
+    const app: Express = express();
+    const port = process.env.PORT || 5000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-});
+    app.use(express.json());
+    app.use(cors());
 
-await connect();
+    await connect();
+    user(app);
+    tasks(app);
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-});
+
+    app.listen(port, () => {
+      console.log(`[server]: Server is running at http://localhost:${port}`);
+    });
 }
 
 StartServer();

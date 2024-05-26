@@ -2,10 +2,10 @@ import Task from "../models/Task";
 import User from "../models/User";
 
 export default class TaskRepository {
-    async CreateTask(title: string, description: string, user_id: string) {
+    async CreateTask(title: string, description: string, userId: string) {
         try {
             const status: string = 'open'
-            const task = new Task({ title, description, status});
+            const task = new Task({ title, description, status, userId});
             const result = await task.save();
             return result;
         } catch (error) {

@@ -9,6 +9,7 @@ export default class UserRepository {
         } catch (error) {
             throw new Error(error as string);
         }
+        
     }
 
     async GetUserByEmail(email: string) {
