@@ -1,13 +1,13 @@
 @base_url = http://localhost:5000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIyIiwiZW1haWwiOiJlbWFpbDJAZW1haWwuY29tIiwiaWF0IjoxNzE2NzQ2MDUyLCJleHAiOjE3MTY4MzI0NTJ9.DAyfDbdCTTbYq7jYz1RSXKyd5oP-9vxqAzWdftKyAdU
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU0Y2ZkMmY1OWY0Yzg5ZDY5NDE2NjIiLCJ1c2VybmFtZSI6InVzZXI1IiwiZW1haWwiOiJlbWFpbDVAZW1haWwuY29tIiwiaWF0IjoxNzE2ODM0MjU4LCJleHAiOjE3MTY5MjA2NTh9.tGOM3lH90k027jre3zfO78TmkU67hLo_POZfTUXql5A
 
 ### Register
 POST {{base_url}}/user/register
 Content-Type: application/json
 
 {
-    "username": "user2",
-    "email": "email2@email.com",
+    "username": "user5",
+    "email": "email5@email.com",
     "password": "password"
 }
 
@@ -27,8 +27,6 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "userId": "user2",
     "title": "task 1",
     "description": "task 1 description"
-
 }

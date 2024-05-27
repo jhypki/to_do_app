@@ -25,6 +25,16 @@ export default class TaskService{
         }
     }
 
+    async GetTasksByUserUsername(username: string){
+        try{
+            const tasks = await this.taskRepository.GetTasksByUserUsername(username);
+            return tasks;
+        }
+        catch(error){
+            throw new Error(error as string);
+        }
+    }
+
     async GetTaskById(id: string){
         try{
             const task = await this.taskRepository.GetTaskById(id);

@@ -50,4 +50,14 @@ export default class TaskRepository {
             throw new Error(error as string);
         }
     }
+
+    async GetTasksByUserUsername(username: string){
+        try {
+            const tasks = await Task.find({ username });
+            return tasks;
+        }
+        catch (error) {
+            throw new Error(error as string);
+        }
+    }
 }

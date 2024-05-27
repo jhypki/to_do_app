@@ -6,6 +6,9 @@ const service = new userService();
 export default async function (app: Express) {
     app.post('/user/register', async (req, res) => {
         const { username, email, password } = req.body;
+        if(password.length < 6){
+            return res.status(400).send('Password must be at least 6 characters long');
+        }
         if (await service.GetUserByEmail(email)) {
             return res.status(400).send('User already exists');
         }

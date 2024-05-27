@@ -5,6 +5,7 @@ export interface IUser{
     email: string;
     password: string;
     tasks: string[];
+    _id: string;
 }
 
 const userSchema = new Schema<IUser>({

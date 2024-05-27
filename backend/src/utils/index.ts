@@ -21,9 +21,9 @@ export const comparePassword = async (password: string, hash: string) => {
 
 export const generateToken = async (payload: IUser) => {
     try{
-        const { username, email } = payload;
+        const { _id, username, email } = payload;
 
-        return jwt.sign({ username, email }, JWT_SECRET, 
+        return jwt.sign({ _id, username, email }, JWT_SECRET, 
             { expiresIn: '1d' }
         );
     }
@@ -37,6 +37,24 @@ export const verifyToken = async (token: string) => {
         return jwt.verify(token, JWT_SECRET!);
     }
     catch(error){
+        throw new Error(error as string);
+    }
+}
+
+export const getUsernameFromToken = async (token: string): Promise<string | null> => {
+    try {
+        const decodedToken = jwt.verify(token, JWT_SECRET!) as jwt.JwtPayload;
+        return decodedToken.username || null;
+    } catch (error) {
+        throw new Error(error as string);
+    }
+}
+
+export const GetUserIdFromToken = async (token: string): Promise<string | null> => {
+    try {
+        const decodedToken = jwt.verify(token, JWT_SECRET!) as jwt.JwtPayload;
+        return decodedToken._id || null;
+    } catch (error) {
         throw new Error(error as string);
     }
 }
