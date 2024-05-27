@@ -1,3 +1,4 @@
+import { ITask } from './../database/models/Task';
 import TaskRepository from "../database/repository/taskRepository";
 
 export default class TaskService{
@@ -8,6 +9,16 @@ export default class TaskService{
     async CreateTask(title: string, description: string, userId: string){
         try{
             const result = await this.taskRepository.CreateTask(title, description, userId);
+            return result;
+        }
+        catch(error){
+            throw new Error(error as string);
+        }
+    }
+
+    async AddTaskToUser(userId: string, task: ITask){
+        try{
+            const result = await this.taskRepository.AddTaskToUser(userId, task);
             return result;
         }
         catch(error){

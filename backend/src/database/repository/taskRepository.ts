@@ -1,4 +1,6 @@
 import Task from "../models/Task";
+import User from "../models/User";
+import { ITask } from "../models/Task";
 
 export default class TaskRepository {
     async CreateTask(title: string, description: string, userId: string) {
@@ -12,9 +14,9 @@ export default class TaskRepository {
         }
     }
 
-    async GetTasksByUserId(user_id: string) {
+    async GetTasksByUserId(userId: string) {
         try {
-            const tasks = await Task.find({ user_id });
+            const tasks = await Task.find({ userId });
             return tasks;
         } catch (error) {
             throw new Error(error as string);
@@ -55,6 +57,16 @@ export default class TaskRepository {
         try {
             const tasks = await Task.find({ username });
             return tasks;
+        }
+        catch (error) {
+            throw new Error(error as string);
+        }
+    }
+
+    async AddTaskToUser(userId: string, task: ITask){
+        try {
+            const result = await User.updateOne({ _id: userId }, { $push: { tasks: task } });
+            return result;
         }
         catch (error) {
             throw new Error(error as string);

@@ -10,6 +10,7 @@ export default async function(app: Express) {
         const userId = (req as any).userId;
         try {
             const result = await service.CreateTask(title, description, userId);
+            await service.AddTaskToUser(userId, result);
             res.status(201).send(result);
         } catch (error) {
             res.status(400).send(error);
