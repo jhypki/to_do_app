@@ -2,8 +2,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import express, { Express, Request, Response } from "express";
 import { connect } from "./database/connection";
-import user from "./api/user";
-import tasks from "./api/tasks";
+import user from "./controllers/user";
+import tasks from "./controllers/tasks";
 import cors from "cors";
 
 
